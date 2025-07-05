@@ -1,0 +1,26 @@
+<div *ngIf="productos && productos.length > 0; else noResultados" class="row gx-5 gy-5">
+  <h6 class="text-uppercase fw-bold" style="font-size: 1.2rem; color: #1976d2;">listado-productos-component</h6>
+  
+  <div *ngFor="let producto of productos" class="col-12 col-sm-6 col-md-4">
+    <div class="card h-100 d-flex flex-column shadow-sm" style="min-height: 520px;">
+      <img [src]="producto.imagen" class="card-img-top" alt="{{producto.nombre}}" 
+           style="height: 280px; object-fit: contain; background-color: #f5f5f5;">
+      
+      <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+        <div>
+          <h5 class="card-title mb-2" style="font-size: 1rem;">{{producto.nombre}}</h5>
+          <p class="mb-1" style="font-size: 0.9rem; font-weight: 600;">Descripción:</p>
+          <p class="mb-2" style="font-size: 0.85rem;">{{producto.descripcion}}</p>
+          <p class="mb-2" style="font-size: 0.85rem;"><strong>Categoría:</strong> {{producto.idCategoriaNavigation.nombre}}</p>
+        </div>
+        <p class="card-text mt-auto mb-0 fw-bold" style="font-size: 0.95rem;">
+          Precio: {{producto.precio | currency:'MXN'}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noResultados>
+  <p>No se encontraron productos.</p>
+</ng-template>

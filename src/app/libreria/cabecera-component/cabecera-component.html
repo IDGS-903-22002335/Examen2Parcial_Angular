@@ -1,0 +1,59 @@
+<div class="container" style="font-family: 'Montserrat', sans-serif; min-height: 100vh; display: flex; flex-direction: column;">
+  <h6 style="font-size: 1.2rem; font-weight: bold; color: #1976d2; text-transform: uppercase;">cabecera-component</h6>
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 3rem; 
+              background: linear-gradient(135deg, #6a3093 0%, #a044ff 100%); 
+              color: #ffffff; box-shadow: 0 8px 32px rgba(0,0,0,0.15); 
+              border-radius: 0 0 24px 24px; position: sticky; top: 0; z-index: 100;">
+    
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <img src="https://sdmntprwestus.oaiusercontent.com/files/00000000-55dc-6230-a927-770874dc96fd/raw?se=2025-07-05T20%3A47%3A02Z&sp=r&sv=2024-08-04&sr=b&scid=67d8275c-f76e-5423-9141-ae2376b2c623&skoid=864daabb-d06a-46b3-a747-d35075313a83&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-05T12%3A29%3A25Z&ske=2025-07-06T12%3A29%3A25Z&sks=b&skv=2024-08-04&sig=/AJZ/EYEv5blfO2MWj9N6UHGODcHfF7yN5dfcbhjyNw%3D" 
+           alt="Logo Librería Polo"
+           style="height: 80px; width: 80px; border-radius: 16px; 
+                  box-shadow: 0 4px 20px rgba(0,0,0,0.25); 
+                  border: 3px solid #f8f1e4; object-fit: cover;">
+      
+      <div>
+        <h1 style="margin: 0; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.5px; 
+                   text-shadow: 0 2px 4px rgba(0,0,0,0.2);">Librería Polo</h1>
+        <p style="margin: 0.2rem 0 0; font-size: 1rem; opacity: 0.9;">Tu mundo de conocimiento</p>
+      </div>
+    </div>
+
+    <nav style="display: flex; gap: 1rem;">
+      <button 
+        (click)="irAInicio()" 
+        style="padding: 0.7rem 1.5rem; font-size: 1rem; font-weight: 600; 
+               background-color: #f8f1e4; color: #6a3093; 
+               border: none; border-radius: 12px; 
+               cursor: pointer; transition: all 0.3s ease;
+               box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        Inicio
+      </button>
+
+      <button 
+        (click)="irABuscador()" 
+        style="padding: 0.7rem 1.5rem; font-size: 1rem; font-weight: 600; 
+               background-color: #f8f1e4; color: #6a3093; 
+               border: none; border-radius: 12px; 
+               cursor: pointer; transition: all 0.3s ease;
+               box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        Buscador
+      </button>
+    </nav>
+  </header>
+
+  <div style="padding: 2rem 3rem; flex: 1;">
+    <app-inicio-component *ngIf="mostrar === 'inicio'"></app-inicio-component>
+
+    <div *ngIf="mostrar === 'buscador'">
+      <app-buscador-component (resultadoBusqueda)="productosBuscados = $event"></app-buscador-component>
+
+      <div style="padding-top: 1.5rem; border-top: 2px solid rgba(106, 48, 147, 0.2); margin-top: 1.5rem;">
+        <app-listado-productos [productos]="productosBuscados"></app-listado-productos>
+      </div>
+    </div>
+  </div>
+
+  <app-footer-component></app-footer-component>
+</div>

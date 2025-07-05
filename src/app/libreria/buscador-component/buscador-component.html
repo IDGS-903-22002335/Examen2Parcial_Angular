@@ -1,0 +1,89 @@
+
+<div class="search-container" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+<h6 style="font-size: 1.2rem; font-weight: bold; color: #1976d2; text-transform: uppercase;">buscador-component</h6>
+  
+  <div class="mb-4">
+    <label for="nombreLibro" class="form-label" style="color: #495057; font-weight: 600; font-size: 1.2rem; margin-bottom: 0.8rem;">
+      <svg style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      BUSCAR LIBRO
+    </label>
+    <div class="input-group" style="box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+      <input
+        type="text"
+        id="nombreLibro"
+        class="form-control form-control-lg"
+        [(ngModel)]="nombreLibro"
+        (input)="filtrar()"
+        placeholder="Ej: Cien años de soledad..."
+        style="border: 2px solid #ced4da; border-radius: 8px 0 0 8px; padding: 1rem; font-size: 1.1rem;"
+      />
+      <button class="btn btn-primary" type="button" style="border-radius: 0 8px 8px 0; padding: 0 1.5rem; font-weight: 600; background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); border: none;">
+        <svg style="width: 18px; height: 18px; vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 11H5M12 19l-7-7 7-7"></path>
+        </svg>
+        Buscar
+      </button>
+    </div>
+  </div>
+
+  <!-- Filtros por categoría  -->
+  <div>
+    <label class="form-label" style="color: #495057; font-weight: 600; font-size: 1.2rem; margin-bottom: 1rem; display: block;">
+      <svg style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"></path>
+        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+      </svg>
+      FILTRAR POR CATEGORÍA
+    </label>
+    <div class="categories-container" style="display: flex; flex-wrap: wrap; gap: 0.8rem;">
+      <!-- Opción Todas -->
+      <div>
+        <input
+          class="btn-check"
+          type="radio"
+          name="categoria"
+          [value]="0"
+          [(ngModel)]="categoriaSeleccionada"
+          (change)="filtrar()"
+          id="categoria0"
+          autocomplete="off"
+        />
+        <label class="btn" for="categoria0" style="background-color: #fff; border: 2px solid #74b9ff; color: #0984e3; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 500; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+          <svg style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 3h18v18H3z"></path>
+            <path d="M7 7h10v10H7z"></path>
+          </svg>
+          Todas
+        </label>
+      </div>
+      
+      <!-- Categorías -->
+      <div *ngFor="let categoria of categorias">
+        <input
+          class="btn-check"
+          type="radio"
+          name="categoria"
+          [value]="categoria.idCategoria"
+          [(ngModel)]="categoriaSeleccionada"
+          (change)="filtrar()"
+          [id]="'categoria' + categoria.idCategoria"
+          autocomplete="off"
+        />
+        <label 
+          class="btn" 
+          [for]="'categoria' + categoria.idCategoria"
+          style="background-color: #fff; border: 2px solid #a29bfe; color: #6c5ce7; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 500; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"
+        >
+          <svg style="width: 16px; height: 16px; vertical-align: middle; margin-right: 6px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+          </svg>
+          {{ categoria.nombre }}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

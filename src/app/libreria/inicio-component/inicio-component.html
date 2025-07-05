@@ -1,0 +1,77 @@
+<style>
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 0 1 calc(33.33% - 3rem);
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  transition: transform 0.2s;
+  max-width: 320px;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Que crezca según el contenido */
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: 240px; /* Imagen más grande */
+  object-fit: cover; /* Rellena bien sin deformar */
+}
+
+.card-body {
+  padding: 1rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body h3 {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.card-body p {
+  font-size: 1rem;
+  margin: 0.4rem 0;
+}
+</style>
+
+<!-- BANNER PROMOCIONAL -->
+<div style="background: linear-gradient(to right, #b94f73, #a63757); color: white; padding: 2.5rem 1.5rem; text-align: center; border-radius: 16px; margin: 2rem 1rem; box-shadow: 0 6px 16px rgba(0,0,0,0.2);">
+  <h2 style="margin-bottom: 0.5rem; font-size: 2rem;">✨ ¡Gran promoción de verano!</h2>
+  <p style="font-size: 1.2rem; margin: 0;">
+    Disfruta de un <strong>20% de descuento</strong> en libros seleccionados.<br>
+    ¡Solo por tiempo limitado!
+  </p>
+</div>
+
+<!-- COMPONENTE DE INICIO -->
+<h6 style="font-size: 1.2rem; font-weight: bold; color: #1976d2; text-transform: uppercase;">inicio-component</h6>
+<h2>Productos</h2>
+
+<!-- LISTADO DE PRODUCTOS -->
+<div class="cards-container">
+  <div class="card" *ngFor="let producto of productos">
+    <img [src]="producto.imagen" alt="{{producto.nombre}}" class="card-img" />
+    <div class="card-body">
+      <h3>{{ producto.nombre }}</h3>
+      <p>Precio: {{ producto.precio | currency:'MXN' }}</p>
+      <p>Categoría: {{ producto.idCategoriaNavigation.nombre }}</p>
+      <p>Descripción: {{ producto.descripcion }}</p>
+    </div>
+  </div>
+</div>
